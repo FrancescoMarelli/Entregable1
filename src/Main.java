@@ -1,4 +1,4 @@
-package Framework;
+import Framework.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
