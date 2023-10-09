@@ -73,8 +73,9 @@ public class Main {
                     matrixB.add(row);
                 }
                 p = new MatrixMultiplyProb(matrixA, matrixB);
-
                 dc = new MatrixMultiplyDC();
+                ArrayList<ArrayList<Integer>> matrixC = ((MatrixMultiplySol) dc.solve(p)).getMatrixSol();
+                s = new MatrixMultiplySol(matrixC);
                 dc.solve(p);
                 System.out.println(s);
             break;
