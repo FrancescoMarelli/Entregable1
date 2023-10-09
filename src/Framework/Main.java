@@ -29,9 +29,9 @@ public class Main {
                     disorderedArr.add(sc.nextInt());
                 }
                 p = new BinSortProb(disorderedArr);
-                s = new BinSortSol(disorderedArr);
                 dc = new BinSortDC();
-                dc.solve(p);
+                ArrayList<Integer> orderedArr = ((BinSortSol) dc.solve(p) ).getOrderedArr();
+                s = new BinSortSol(orderedArr);
                 System.out.println(s);
                 break;
             }
@@ -53,26 +53,27 @@ public class Main {
                     matrixA.add(row);
                 }
 
-                if (n != m) {
-                    System.out.println("El numero de columnas de la matriz A debe ser igual al numero de filas de la matriz B");
-                    break;
-                }
+
                 ArrayList<ArrayList<Integer>> matrixB = new ArrayList<ArrayList<Integer>>();
                 System.out.println("Ingrese el numero de filas  de la matriz B");
                 int n2 = sc.nextInt();
+                if( n2 != m){
+                    System.out.println("El numero de columnas de la matriz A debe ser igual al numero de filas de la matriz B");
+                    System.exit(0);
+                }
                 System.out.println("Ingrese el numero de columnas de la matriz B ");
                 int m2 = sc.nextInt();
 
                 for (int i = 0; i < n2; i++) {
                     ArrayList<Integer> row = new ArrayList<Integer>();
                     for (int j = 0; j < m2; j++) {
-                        System.out.println("Ingrese el elemento " + (j + 1) + " de la fila " + (i + 1) + " de la matrizB");
+                        System.out.println("Ingrese el elemento " + (j + 1) + " de la fila " + (i + 1) + " de la matriz B");
                         row.add(sc.nextInt());
                     }
                     matrixB.add(row);
                 }
                 p = new MatrixMultiplyProb(matrixA, matrixB);
-                s = new MatrixMultiplySol(matrixA);
+
                 dc = new MatrixMultiplyDC();
                 dc.solve(p);
                 System.out.println(s);

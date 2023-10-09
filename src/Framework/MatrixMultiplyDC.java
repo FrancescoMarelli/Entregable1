@@ -8,7 +8,13 @@ public class MatrixMultiplyDC extends DivConqTemplate{
         return ((MatrixMultiplyProb) p).getMatrixA().isEmpty();
     }
     protected Solution simplySolve(Problem p) {
-        return new MatrixMultiplySol(((MatrixMultiplyProb) p).getMatrixA());
+        MatrixMultiplyProb mmp = (MatrixMultiplyProb) p;
+        ArrayList<ArrayList<Integer>> matrixA = mmp.getMatrixA();
+        if (matrixA.size() == 0) {
+            return new MatrixMultiplySol(new ArrayList<ArrayList<Integer>>());
+        } else {
+            return new MatrixMultiplySol(matrixA);
+        }
     }
     protected Problem[] decompose(Problem p) {
         MatrixMultiplyProb mmp = (MatrixMultiplyProb) p;
@@ -36,19 +42,19 @@ public class MatrixMultiplyDC extends DivConqTemplate{
         MatrixMultiplyProb mmp = (MatrixMultiplyProb) p;
         ArrayList<ArrayList<Integer>> matrixA = mmp.getMatrixA();
         ArrayList<ArrayList<Integer>> matrixB = mmp.getMatrixB();
-        ArrayList<ArrayList<Integer>> matrixC = new ArrayList<ArrayList<Integer>>();
+        ArrayList<ArrayList<Integer>> matrixC = new ArrayList<>();
         ArrayList<Integer> rowC = new ArrayList<Integer>();
 
         for (ArrayList<Integer> row : matrixA) {
-            for (int j = 0; j < matrixB.size(); j++) {
+            for (int j = 0; j < matrixB.get(0).size(); j++) {
                 int sum = 0;
-                for (int k = 0; k < matrixA.size(); k++) {
+                for (int k = 0; k < matrixA.get(0).size(); k++) {
                     sum += row.get(k) * matrixB.get(k).get(j);
                 }
                 rowC.add(sum);
             }
             matrixC.add(rowC);
-            rowC = new ArrayList<Integer>();
+            rowC = new ArrayList<>();
         }
         return new MatrixMultiplySol(matrixC);
     }
