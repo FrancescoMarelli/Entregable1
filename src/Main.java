@@ -36,41 +36,14 @@ public class Main {
                 break;
             }
             case MATRIXMULTIPLY: {
-                System.out.println("El numero de columnas de la matriz A debe ser igual al numero de filas de la matriz B");
-                ArrayList<ArrayList<Integer>> matrixA = new ArrayList<ArrayList<Integer>>();
-                //do a for to get two matrixes and get the size of the matrixes
-                System.out.println("Ingrese el numero de filas  de la matriz A");
-                int n = sc.nextInt();
-                System.out.println("Ingrese el numero de columnas de la matriz A");
-                int m = sc.nextInt();
+                ArrayList<ArrayList<Integer>> matrixA = new BuildMatrix().BuildMatrix();
+                ArrayList<ArrayList<Integer>> matrixB = new BuildMatrix().BuildMatrix();
+                int n = matrixA.get(0).size();
+                int m = matrixB.size();
 
-                for (int i = 0; i < n; i++) {
-                    ArrayList<Integer> row = new ArrayList<Integer>();
-                    for (int j = 0; j < m; j++) {
-                        System.out.println("Ingrese el elemento " + (j + 1) + " de la fila " + (i + 1) + " de la matriz A");
-                        row.add(sc.nextInt());
-                    }
-                    matrixA.add(row);
-                }
-
-
-                ArrayList<ArrayList<Integer>> matrixB = new ArrayList<ArrayList<Integer>>();
-                System.out.println("Ingrese el numero de filas  de la matriz B");
-                int n2 = sc.nextInt();
-                if( n2 != m){
-                    System.out.println("El numero de columnas de la matriz A debe ser igual al numero de filas de la matriz B");
+                if( n != m){
+                    System.out.println("\nEl numero de columnas de la matriz A debe ser igual al numero de filas de la matriz B\n");
                     System.exit(0);
-                }
-                System.out.println("Ingrese el numero de columnas de la matriz B ");
-                int m2 = sc.nextInt();
-
-                for (int i = 0; i < n2; i++) {
-                    ArrayList<Integer> row = new ArrayList<Integer>();
-                    for (int j = 0; j < m2; j++) {
-                        System.out.println("Ingrese el elemento " + (j + 1) + " de la fila " + (i + 1) + " de la matriz B");
-                        row.add(sc.nextInt());
-                    }
-                    matrixB.add(row);
                 }
                 p = new MatrixMultiplyProb(matrixA, matrixB);
                 dc = new MatrixMultiplyDC();
